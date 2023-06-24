@@ -22,21 +22,29 @@ public class ReadingExel {
         //USING FOR LOOP
         int rows = sheet.getLastRowNum();
         int cols = sheet.getRow(1).getLastCellNum();
-        for (int r = 0; r <= rows; r++) {
-            XSSFRow row = sheet.getRow(r);
-            for (int c = 0; c < cols; c++) {
-                XSSFCell cell = row.getCell(c);
-                parseCellType(cell);
-            }
-            System.out.println();
-        }
+        readLoop(sheet, rows, cols);
 
         //USING ITERATOR
+        readIterator(sheet);
+    }
+
+    public static void readIterator(XSSFSheet sheet) {
         for (Row cells : sheet) {
             XSSFRow row = (XSSFRow) cells;
             Iterator<Cell> cellIterator = row.cellIterator();
             while (cellIterator.hasNext()) {
                 XSSFCell cell = (XSSFCell) cellIterator.next();
+                parseCellType(cell);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void readLoop(XSSFSheet sheet, int rows, int cols) {
+        for (int r = 0; r <= rows; r++) {
+            XSSFRow row = sheet.getRow(r);
+            for (int c = 0; c < cols; c++) {
+                XSSFCell cell = row.getCell(c);
                 parseCellType(cell);
             }
             System.out.println();
@@ -49,6 +57,7 @@ public class ReadingExel {
                 System.out.print(cell.getStringCellValue());
                 break;
             case NUMERIC:
+            case FORMULA:
                 System.out.print(cell.getNumericCellValue());
                 break;
             case BOOLEAN:

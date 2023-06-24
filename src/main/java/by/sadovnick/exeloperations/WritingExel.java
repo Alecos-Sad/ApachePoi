@@ -37,14 +37,10 @@ public class WritingExel {
         for (Object[] emp : empdataArray){
             XSSFRow row = sheet.createRow(rownum++);
             int cellnum = 0;
-            writeRowData(emp, row, cellnum);
-        }
-    }
-
-    private static void writeRowData(Object[] emp, XSSFRow row, int cellnum) {
-        for (Object value : emp){
-            XSSFCell cell = row.createCell(cellnum++);
-            checkInstance(value, cell);
+            for (Object value : emp){
+                XSSFCell cell = row.createCell(cellnum++);
+                checkInstance(value, cell);
+            }
         }
     }
 
@@ -53,7 +49,10 @@ public class WritingExel {
         for (Object[] emp : empdata) {
             XSSFRow row = sheet.createRow(rowCount++);
             int columnCount = 0;
-            writeRowData(emp, row, columnCount);
+            for (Object value : emp){
+                XSSFCell cell = row.createCell(columnCount++);
+                checkInstance(value, cell);
+            }
         }
     }
 
