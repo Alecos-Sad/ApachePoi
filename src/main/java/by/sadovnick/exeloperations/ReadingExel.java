@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class ReadingExel {
         }
     }
 
-    private static void parseCellType(XSSFCell cell) {
+    private static void parseCellType(@NotNull XSSFCell cell) {
         switch (cell.getCellType()) {
             case STRING:
                 System.out.print(cell.getStringCellValue());
