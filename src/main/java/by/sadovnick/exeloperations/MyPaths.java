@@ -12,4 +12,5 @@ public class MyPaths {
     public static final String DATABASE_FILE = ".\\datafiles\\database.xlsx";
     public static final String LOGIN_FILE = ".\\datafiles\\loginData.xlsx";
     public static final String WEB_FILE = ".\\datafiles\\population.xlsx";
+    public static final String DATE_FILE = ".\\datafiles\\dataformats.xlsx";
 }
