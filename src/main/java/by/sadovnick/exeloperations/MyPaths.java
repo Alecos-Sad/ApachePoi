@@ -9,4 +9,5 @@ public class MyPaths {
     public static final String CUSTOMERS_FILE = ".\\datafiles\\customers.xlsx";
     public static final String COLOR_FILE = ".\\datafiles\\colors.xlsx";
     public static final String STUDENT_FILE = ".\\datafiles\\students.xlsx";
+    public static final String DATABASE_FILE = ".\\datafiles\\database.xlsx";
 }
