@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -68,12 +69,25 @@ public class XLUtility {
     }
 
     public void setCellData(String sheetName, int rowNum, int colNum, String data) throws IOException {
+        File xlfile = new File(path);
+        if (!xlfile.exists()) {
+            workbook = new XSSFWorkbook();
+            outputStream = new FileOutputStream(path);
+            workbook.write(outputStream);
+        }
         inputStream = new FileInputStream(path);
         workbook = new XSSFWorkbook(inputStream);
+        if (workbook.getSheetIndex(sheetName) == -1) {
+            workbook.createSheet(sheetName);
+        }
         sheet = workbook.getSheet(sheetName);
+        if (sheet.getRow(rowNum) == null) {
+            sheet.createRow(rowNum);
+        }
         row = sheet.getRow(rowNum);
-        cell = row.getCell(colNum);
+        cell = row.createCell(colNum);
         cell.setCellValue(data);
+
         outputStream = new FileOutputStream(path);
         workbook.write(outputStream);
         workbook.close();
